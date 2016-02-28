@@ -6,13 +6,13 @@
 <div class="form-group">
 <div class="col-sm-3 control-label"><?php echo $this->BcForm->label('Mypage' . '.username', 'メールアドレス') ?></div>
 <div class="col-sm-9">
-	<div class="control-body"><?php echo $this->BcForm->input('Mypage' . '.username', array('type' => 'text', 'size' => 16, 'tabindex' => 1, 'class' => 'form-control form-control-md')) ?></div>
+	<div class="control-body"><?php echo $this->BcForm->input('Mypage' . '.username', array('type' => 'text', 'size' => 16, 'tabindex' => 1, 'class' => 'form-control form-control-lg')) ?></div>
 </div>
 </div>
 <div class="form-group">
 <div class="col-sm-3 control-label"><?php echo $this->BcForm->label('Mypage' . '.password', 'パスワード') ?></div>
 <div class="col-sm-9">
-	<div class="control-body"><?php echo $this->BcForm->input('Mypage' . '.password', array('type' => 'password', 'size' => 16, 'tabindex' => 2, 'class' => 'form-control form-control-md')) ?></div>
+	<div class="control-body"><?php echo $this->BcForm->input('Mypage' . '.password', array('type' => 'password', 'size' => 16, 'tabindex' => 2, 'class' => 'form-control form-control-lg')) ?></div>
 </div>
 </div>
 
