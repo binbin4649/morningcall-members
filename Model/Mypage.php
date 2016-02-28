@@ -76,6 +76,15 @@ class Mypage extends BcPluginAppModel {
                 $this->data['Mypage']['tel'] = $tel;
             }    
         }
+        //クリーニング
+        if(isset($this->data['Mypage']['tel'])){
+            $this->data['Mypage']['tel'] = mb_convert_kana($this->data['Mypage']['tel'], "n");
+            $this->data['Mypage']['tel'] = mb_ereg_replace('[^0-9]', '', $this->data['Mypage']['tel']);
+        }
+        if(isset($this->data['Mypage']['last_tel'])){
+            $this->data['Mypage']['last_tel'] = mb_convert_kana($this->data['Mypage']['last_tel'], "n");
+            $this->data['Mypage']['last_tel'] = mb_ereg_replace('[^0-9]', '', $this->data['Mypage']['last_tel']);
+        }
         return true;
     }    
     
@@ -108,6 +117,20 @@ class Mypage extends BcPluginAppModel {
         $mypages = $this->find('first', array('conditions' => array('status'=>1, 'name'=>$email)));
         if($mypages) $this->delete($mypages['Mypage']['id']);
         return true;
+    }
+
+    public function LocateList(){
+        //$req = 'http://weather.livedoor.com/forecast/rss/primary_area.xml';
+        $req = APP.'webroot/files/primary_area.xml';
+        $xml = simplexml_load_file($req);
+        $rss = $xml->xpath('/rss/channel/ldWeather:source/pref');
+        foreach($rss as $value){
+            $cate = (string)$value->attributes()->title;
+            foreach($value->city as $city){
+                $s_cate[$cate][(string)$city->attributes()->id] = (string)$city->attributes()->title;
+            }
+        }
+        return $s_cate;
     }
 
 }

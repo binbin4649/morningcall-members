@@ -144,6 +144,7 @@ class MypagesController extends BcPluginAppController {
     }
     $this->pageTitle = 'ユーザー編集';
     $this->set('user', $user);
+    $this->set('s_cate', $this->Mypage->LocateList());
   }
 
   public function login(){

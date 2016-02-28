@@ -7,7 +7,7 @@ if ($this->Session->check('Message.auth')) {
 <?php $this->BcBaser->flash() ?>
 <div id="AlertMessage" class="message" style="display:none"></div>
 <?php echo $this->BcForm->create('Mypage', array('action' => 'edit', 'url' => array(), 'class' => 'form-horizontal')) ?>
-
+<h3>ユーザー情報</h3>
 <div class="form-group">
 <div class="col-sm-3 control-label"><?php echo $this->BcForm->label('Mypage.id', '会員番号') ?></div>
 <div class="col-sm-9">
@@ -17,47 +17,18 @@ if ($this->Session->check('Message.auth')) {
 <div class="form-group">
 <div class="col-sm-3 control-label"><?php echo $this->BcForm->label('Mypage.name', '名前') ?></div>
 <div class="col-sm-9">
-	<div class="control-body">
-		[姓]<?php echo $this->BcForm->input('Mypage.name_1', array('type'=>'text', 'size'=>8, 'tabindex'=>1, 'maxlength'=>'100', 'value'=>$user['name_1'], 'class' => 'form-control form-control-sm')) ?>
-		[名]<?php echo $this->BcForm->input('Mypage.name_2', array('type'=>'text', 'size'=>8, 'tabindex'=>2, 'maxlength'=>'100', 'value'=>$user['name_2'], 'class' => 'form-control form-control-sm')) ?>
+	<div class="control-body"><small>カタカナ推奨。</small><br>
+		<?php echo $this->BcForm->input('Mypage.name', array('type'=>'text', 'tabindex'=>1, 'maxlength'=>'100', 'value'=>$user['name'], 'class' => 'form-control form-control-lg')) ?>
 		<?php echo $this->BcForm->error('Mypage.name') ?></div>
 </div>
 </div>
 <div class="form-group">
-<div class="col-sm-3 control-label"><?php echo $this->BcForm->label('Mypage.name_kana', 'フリガナ') ?></div>
-<div class="col-sm-9">
-	<div class="control-body">
-		[姓]<?php echo $this->BcForm->input('Mypage.name_kana_1', array('type'=>'text', 'size'=>8, 'tabindex'=>3, 'maxlength'=>'100', 'value'=>$user['name_kana_1'], 'class' => 'form-control form-control-sm')) ?>
-		[名]<?php echo $this->BcForm->input('Mypage.name_kana_2', array('type'=>'text', 'size'=>8, 'tabindex'=>4, 'maxlength'=>'100', 'value'=>$user['name_kana_2'], 'class' => 'form-control form-control-sm')) ?>
-		<?php echo $this->BcForm->error('Mypage.name_kana') ?></div>
-</div>
-</div>
-<div class="form-group">
-<div class="col-sm-3 control-label"><?php echo $this->BcForm->label('Mypage.sex', '性別') ?></div>
-<div class="col-sm-9">
-	<div class="control-body"><?php echo $this->BcForm->input('Mypage.sex', array('type'=>'radio', 'tabindex'=>5, 'value'=>$user['sex'],'options'=>array('1'=>'男性','2'=>'女性'), 'class' => 'form-control')) ?>
-		<?php echo $this->BcForm->error('Mypage.sex') ?></div>
-</div>
-</div>
-<div class="form-group">
-<div class="col-sm-3 control-label"><?php echo $this->BcForm->label('Mypage.tel', '電話番号') ?></div>
-<div class="col-sm-9">
-	<div class="control-body">
-	<?php echo $this->BcForm->input('Mypage.tel_1', array('type'=>'text', 'size'=>3, 'tabindex'=>6, 'maxlength'=>'10', 'value'=>$user['tel_1'], 'class' => 'form-control form-control-sm')) ?>
-		- <?php echo $this->BcForm->input('Mypage.tel_2', array('type'=>'text', 'size'=>3, 'tabindex'=>7, 'maxlength'=>'10', 'value'=>$user['tel_2'], 'class' => 'form-control form-control-sm')) ?>
-		- <?php echo $this->BcForm->input('Mypage.tel_3', array('type'=>'text', 'size'=>3, 'tabindex'=>8, 'maxlength'=>'10', 'value'=>$user['tel_3'], 'class' => 'form-control form-control-sm')) ?>
-		<?php echo $this->BcForm->error('Mypage.tel') ?></div>
-</div>
-</div>
-
-<div class="form-group">
 <div class="col-sm-3 control-label"><?php echo $this->BcForm->label('Mypage.email', 'メールアドレス') ?></div>
 <div class="col-sm-9">
-	<div class="control-body"><?php echo $this->BcForm->input('Mypage.email', array('type'=>'email', 'size'=>25, 'tabindex'=>9, 'maxlength'=>'100', 'value'=>$user['email'], 'class' => 'form-control form-control-md')) ?>
+	<div class="control-body"><?php echo $this->BcForm->input('Mypage.email', array('type'=>'email', 'tabindex'=>9, 'maxlength'=>'100', 'value'=>$user['email'], 'class' => 'form-control form-control-lg')) ?>
 		<?php echo $this->BcForm->error('Mypage.email') ?></div>
 </div>
 </div>
-
 <div class="form-group">
 <div class="col-sm-3 control-label"><?php echo $this->BcForm->label('Mypage.password', 'パスワード') ?></div>
 <div class="col-sm-9">
@@ -68,6 +39,42 @@ if ($this->Session->check('Message.auth')) {
 		<?php echo $this->BcForm->error('Mypage.password') ?></div>
 </div>
 </div>
+
+<h3>コールの設定</h3>
+
+<div class="form-group">
+<div class="col-sm-3 control-label"><?php echo $this->BcForm->label('Mypage.call_plan', 'コールプラン') ?></div>
+<div class="col-sm-9">
+	<div class="control-body"><?php echo $this->BcForm->input('Mypage.call_plan', array('type'=>'radio', 'tabindex'=>5, 'value'=>$user['call_plan'],'options'=>array('basic'=>'基本:50P','quiz'=>'クイズ:100P'), 'class' => 'form-control')) ?>
+		<?php echo $this->BcForm->error('Mypage.call_plan') ?></div>
+</div>
+</div>
+<div class="form-group">
+<div class="col-sm-3 control-label"><?php echo $this->BcForm->label('Mypage.tel', '電話番号（メイン）') ?></div>
+<div class="col-sm-9">
+	<div class="control-body">
+	<?php echo $this->BcForm->input('Mypage.tel', array('type'=>'text', 'tabindex'=>6, 'maxlength'=>'10', 'value'=>$user['tel'], 'class' => 'form-control form-control-lg')) ?>
+		<?php echo $this->BcForm->error('Mypage.tel') ?></div>
+</div>
+</div>
+<div class="form-group">
+<div class="col-sm-3 control-label"><?php echo $this->BcForm->label('Mypage.last_tel', '電話番号（予備）') ?></div>
+<div class="col-sm-9">
+	<div class="control-body">
+	<?php echo $this->BcForm->input('Mypage.last_tel', array('type'=>'text', 'tabindex'=>6, 'maxlength'=>'10', 'value'=>$user['last_tel'], 'class' => 'form-control form-control-lg')) ?>
+		<?php echo $this->BcForm->error('Mypage.last_tel') ?></div>
+</div>
+</div>
+
+<div class="form-group">
+<div class="col-sm-3 control-label"><?php echo $this->BcForm->label('Mypage.locate', '今日の天気') ?></div>
+<div class="col-sm-9">
+	<div class="control-body"><small>お住まいの地域を選択。</small>
+	<?php echo $this->BcForm->input('Mypage.locate', array('type'=>'select', 'options'=>$s_cate, 'value'=>$user['locate'], 'empty'=>'---', 'class' => 'form-control form-control-sm')) ?>
+        <?php echo $this->BcForm->error('Mypage.locate') ?></div>
+</div>
+</div>
+
 
 <div class="submit">
 <?php echo $this->BcForm->submit('送信', array('div' => false, 'class' => 'btn btn-lg btn-primary form-submit', 'id' => 'BtnLogin', 'tabindex' => 4)) ?>
